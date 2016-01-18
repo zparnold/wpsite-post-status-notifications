@@ -206,6 +206,7 @@ class WPSitePostStatusNotifications {
 			$settings = array(
 				'publish_notify'	=> $_POST['wpsite_post_status_notifications_settings_publish_notify'],
 				'pending_notify'	=> $_POST['wpsite_post_status_notifications_settings_pending_notify'],
+				'pending_notify_author' => $_POST['wpsite_post_status_notifications_settings_pending_notify_author'],
 				'post_types'		=> $post_types_array,
 				'message'			=> array(
 					'cc_email'		=> isset($_POST['wpsite_post_status_notifications_settings_message_cc_email']) ?stripcslashes(sanitize_text_field($_POST['wpsite_post_status_notifications_settings_message_cc_email'])) : '',
@@ -323,7 +324,6 @@ class WPSitePostStatusNotifications {
 			}
 		}
 
-		$wpsite_info = "\r\n\r\nThis was sent by 99 Robots Post Status Notifications." .  "\r\n" .  "99robots.com";
 		$just_published_contributor = '"' . $post->post_title . '"' . " was just published!  Check it out, and thanks for the hard work." . "\r\n\r\n" . "View it: $url";
 	    $just_published = '"' . $post->post_title . '"' . " was just published!" . "\r\n\r\n"  . "View it: $url";
 
@@ -358,7 +358,6 @@ class WPSitePostStatusNotifications {
 	    	$message .= "Edit the " . $post->post_type . ": $edit_link\r\n";
 	    	$message .= "Preview it: $preview_link";
 
-	    	$message .= $wpsite_info;
 
 			$users = get_users(array(
 				'role'	=> $settings['pending_notify']
@@ -367,6 +366,26 @@ class WPSitePostStatusNotifications {
 			foreach ($users as $user) {
 				$result = wp_mail($user->user_email, $subject, $message, $headers);
 			}
+
+			if($settings['pending_notify_author'] == 'true') {
+				//now send to author
+
+				$message = "Dear $username->display_name," . "\r\n";
+				$message .= "Thank you for submitting your article to Charismedica. This is a confirmation email for your records. ";
+				$message .= "Please find below information on your article. \r\n \r\n";
+				$message .= "ID: $post->ID \r\n";
+				$message .= "Title: $post->post_title \r\n";
+				$message .= "Abstract: $post->post_content \r\n\r\n";
+				$message .= "This is an automatically generated email. Please do not respond to it directly. ";
+				$message .= "For questions regarding your submission, visit our contact page to get in touch with us. \r\n\r\n";
+				$message .= "Best regards, \r\n";
+				$message .= "Charismedica";
+
+				$subject = "Article Submission Confirmation";
+
+				$result = wp_mail($username->user_email, $subject, $message, $headers);
+			}
+
 	    }
 
 	    // Notifiy Contributor or All Admins or All Users that a post was published
