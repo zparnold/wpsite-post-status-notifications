@@ -130,7 +130,7 @@
 										<th class="wpsite_admin_table_th">
 											<label><?php _e('Author', self::$text_domain); ?></label>
 										<td class="wpsite_admin_table_td">
-											<input name="wpsite_post_status_notifications_settings_pending_notify_author" type="checkbox" value="administrator" <?php echo isset($settings['pending_notify_author']) && $settings['pending_notify_author'] == 'true' ? 'checked' : ''; ?>>
+											<input name="wpsite_post_status_notifications_settings_pending_notify_author" type="checkbox" value="true" <?php echo isset($settings['pending_notify_author']) && $settings['pending_notify_author'] == 'true' ? 'checked' : ''; ?>>
 										</td>
 										</th>
 									</tr>
