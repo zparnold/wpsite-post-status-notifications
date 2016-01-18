@@ -124,13 +124,13 @@
 							<table class="form-table">
 								<tbody>
 
-								<!-- Admins-->
+								<!-- Authors-->
 
 									<tr>
 										<th class="wpsite_admin_table_th">
 											<label><?php _e('Admins', self::$text_domain); ?></label>
 										<td class="wpsite_admin_table_td">
-											<input name="wpsite_post_status_notifications_settings_pending_notify" type="radio" value="administrator" <?php echo isset($settings['pending_notify']) && $settings['pending_notify'] == 'administrator' ? 'checked' : ''; ?>>
+											<input name="wpsite_post_status_notifications_settings_pending_notify_author" type="checkbox" value="administrator" <?php echo isset($settings['pending_notify_author']) && $settings['pending_notify_author'] == 'true' ? 'checked' : ''; ?>>
 										</td>
 										</th>
 									</tr>
@@ -142,11 +142,11 @@
 							<table class="form-table">
 								<tbody>
 
-									<!-- Contributor -->
+									<!-- Author -->
 
 									<tr>
 										<th class="wpsite_admin_table_th">
-											<label><?php _e('Contributor only', self::$text_domain); ?></label><br/>
+											<label><?php _e('Author only', self::$text_domain); ?></label><br/>
 											<td class="wpsite_admin_table_td">
 												<input name="wpsite_post_status_notifications_settings_publish_notify" type="radio" value="author" <?php echo isset($settings['publish_notify']) && $settings['publish_notify'] == 'author' ? 'checked' : ''; ?>>
 											</td>
