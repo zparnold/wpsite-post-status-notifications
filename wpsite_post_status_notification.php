@@ -83,8 +83,10 @@ class WPSitePostStatusNotifications {
 	/* Default Settings */
 
 	private static $default = array(
-		'publish_notify'	=> 'contributor',
+		'publish_notify_author'	=> 'true',
+		'publish_notify'	=> 'author',
 		'pending_notify'	=> 'admin',
+		'pending_notfiy_author' => 'true',
 		'post_types'		=> array('post'),
 		'message'			=> array(
 			'cc_email'						=> '',

@@ -89,7 +89,7 @@
 								</tbody>
 							</table>
 
-							<h3><?php _e('When a contributor submits a post for review notify: ', self::$text_domain); ?></h3>
+							<h3><?php _e('When an author submits a post for review notify: ', self::$text_domain); ?></h3>
 
 							<table class="form-table">
 								<tbody>
@@ -116,6 +116,24 @@
 										</th>
 									</tr>
 
+								</tbody>
+							</table>
+
+							<h3><?php _e('When an author submits a post for review notify: ', self::$text_domain); ?></h3>
+
+							<table class="form-table">
+								<tbody>
+
+								<!-- Admins-->
+
+									<tr>
+										<th class="wpsite_admin_table_th">
+											<label><?php _e('Admins', self::$text_domain); ?></label>
+										<td class="wpsite_admin_table_td">
+											<input name="wpsite_post_status_notifications_settings_pending_notify" type="radio" value="administrator" <?php echo isset($settings['pending_notify']) && $settings['pending_notify'] == 'administrator' ? 'checked' : ''; ?>>
+										</td>
+										</th>
+									</tr>
 								</tbody>
 							</table>
 
